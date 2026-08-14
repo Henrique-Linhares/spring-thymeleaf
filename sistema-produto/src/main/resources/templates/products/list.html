@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="~{layout :: html}">
+<head th:replace="~{layout :: head(title='Lista de Produtos')}"></head>
+<body>
+    <main th:replace="~{layout :: content}">
+        <!-- Feedback -->
+        <div th:if="${message}" class="alert" th:text="${message}"></div>
+
+        <h2>Produtos Cadastrados</h2>
+
+        <!-- Barra de Busca -->
+        <form th:action="@{/products/search}" method="get" class="search-box">
+            <input type="text" name="q" placeholder="Buscar por nome..." th:value="${param.q}">
+            <button type="submit">🔍 Buscar</button>
+        </form>
+
+        <!-- Tabela -->
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.id}"></td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${#numbers.formatCurrency(product.price)}"></td>
+                    <td th:text="${product.description} ?: '---'"></td>
+                    <td class="actions">
+                        <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn-edit">✏️ Editar</a>
+                        <a th:href="@{/products/delete/{id}(id=${product.id})}" 
+                           class="btn-delete"
+                           onclick="return confirm('Tem certeza?')">🗑️ Excluir</a>
+                    </td>
+                </tr>
+                <tr th:if="${products.empty}">
+                    <td colspan="5" class="no-data">Nenhum produto encontrado.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Botão Novo -->
+        <div class="actions">
+            <a th:href="@{/products/new}" class="btn-new">➕ Novo Produto</a>
+        </div>
+    </main>
+</body>
+</html>

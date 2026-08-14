@@ -1,0 +1,44 @@
+/* Estilos Gerais */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Tabela */
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+.product-table th, .product-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.product-table th {
+    background-color: #f2f2f2;
+}
+
+/* Formulário */
+.form-group {
+    margin-bottom: 15px;
+}
+.form-control {
+    width: 100%;
+    padding: 8px;
+}
+
+/* Botões */
+.btn-edit, .btn-new, .btn-save {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+.btn-delete, .btn-cancel {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+}
